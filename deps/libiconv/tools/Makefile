@@ -66,6 +66,7 @@ ALL = \
  jisx0208.h \
  jisx0212.h \
  cp932ext.h \
+# eucjp_msext.h \
  gb2312.h \
  isoir165ext.h \
  gb12345ext.h \
@@ -319,14 +320,19 @@ jisx0201.h : $(TABLESDIR)/clisp/JIS_X0201.TXT 8bit_tab_to_h
 
 # Unicode.org maps 0x2140 to U+005C. We map it to U+FF3C.
 jisx0208.h : $(TABLESDIR)/unicode.org-mappings/EASTASIA/JIS/JIS0208.TXT cjk_tab_to_h
-	sed -e 's,^0x....[ 	]*\(0x....[ 	]*0x.....*\)$$,\1,' < $< | sed -e 's,\([ 	]\)0x005C,\10xFF3C,' | ./cjk_tab_to_h JISX0208.1990-0 jisx0208 > $@
+	sed -e 's,^0x....[ 	]*\(0x....[ 	]*0x.....*\)$$,\1,' < $< | sed -e 's,\([ 	]\)0x005C,\10xFF3C,' | sed -e 's,\([ 	]\)0x2015,\10x2014,' | ./cjk_tab_to_h JISX0208.1990-0 jisx0208 > $@
 
 # Unicode.org maps 0x2237 to U+007E. We map it to U+FF5E.
 jisx0212.h : $(TABLESDIR)/unicode.org-mappings/EASTASIA/JIS/JIS0212.TXT cjk_tab_to_h
 	sed -e 's,\([ 	]\)0x007E,\10xFF5E,' < $< | ./cjk_tab_to_h JISX0212.1990-0 jisx0212 > $@
 
 cp932ext.h : $(TABLESDIR)/unicode.org-mappings/VENDORS/MICSFT/WINDOWS/CP932.TXT cjk_tab_to_h
-	(echo '#' ; grep '^0x\(87\|E[D-F]\|F[0-9A-F]\)[0-9A-F][0-9A-F]' < $< ) | ./cjk_tab_to_h 'CP932 extensions' cp932ext > $@
+	(echo '#' ; grep '^0x\(81\|87\|E[D-F]\|F[0-9A-F]\)[0-9A-F][0-9A-F]' < $< ) | ./cjk_tab_to_h 'CP932 extensions' cp932ext > $@
+
+# http://www.opengroup.or.jp/jvc/cde/ucs-conv-e.html
+# http://www.opengroup.or.jp/jvc/cde/eucJP-ibmext.txt
+eucjp_msext.h : $(TABLESDIR)/opengroup.or.jp-jvc-cde/eucJP-ibmext.txt cjk_tab_to_h
+	(echo '#' ; cat $<) | ./cjk_tab_to_h 'eucJP-ms extensions' eucjp_msext > $@
 
 gb2312.h : $(TABLESDIR)/unicode.org-mappings/EASTASIA/GB/GB2312.TXT cjk_tab_to_h
 	./cjk_tab_to_h GB2312.1980-0 gb2312 < $< > $@

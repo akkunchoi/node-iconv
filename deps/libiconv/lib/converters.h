@@ -131,6 +131,7 @@ struct conv_struct {
 #include "utf32be.h"
 #include "utf32le.h"
 #include "utf7.h"
+#include "utf7imap.h"
 #include "ucs2internal.h"
 #include "ucs2swapped.h"
 #include "ucs4internal.h"
@@ -224,10 +225,13 @@ typedef struct {
 
 #include "euc_jp.h"
 #include "sjis.h"
-#include "cp932.h"
 #include "iso2022_jp.h"
 #include "iso2022_jp1.h"
 #include "iso2022_jp2.h"
+#include "cp932.h"
+#include "cp51932.h"
+#include "eucjp_ms.h"
+#include "iso2022_jpms.h"
 
 #include "euc_cn.h"
 #include "ces_gbk.h"

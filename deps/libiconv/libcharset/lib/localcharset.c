@@ -82,6 +82,9 @@
 #ifndef O_NOFOLLOW
 # define O_NOFOLLOW 0
 #endif
+#ifndef HAVE_WORKING_O_NOFOLLOW
+# define HAVE_WORKING_O_NOFOLLOW 0
+#endif
 
 #if defined _WIN32 || defined __WIN32__ || defined __CYGWIN__ || defined __EMX__ || defined __DJGPP__
   /* Win32, Cygwin, OS/2, DOS */
