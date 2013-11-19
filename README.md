@@ -10,9 +10,6 @@ package.jsonでgitリポジトリを直接指定して下さい。
       }
     }
 
-    $ npm install
-
- 
 ---
 
 # node-iconv
