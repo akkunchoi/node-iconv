@@ -1,3 +1,5 @@
+[node-iconv](https://github.com/bnoordhuis/node-iconv) に  [libiconv1.14 日本語パッチ](http://apolloron.org/software/libiconv-1.14-ja/) を適用しました。
+
 # node-iconv
 
 Text recoding in JavaScript for fun and profit!
