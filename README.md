@@ -1,5 +1,20 @@
 [node-iconv](https://github.com/bnoordhuis/node-iconv) に  [libiconv1.14 日本語パッチ](http://apolloron.org/software/libiconv-1.14-ja/) を適用しました。
 
+## 使い方
+
+package.jsonでgitリポジトリを直接指定して下さい。
+
+    {
+      "dependencies": {
+        "iconv": "git://github.com/akkunchoi/node-iconv.git"
+      }
+    }
+
+    $ npm install
+
+ 
+---
+
 # node-iconv
 
 Text recoding in JavaScript for fun and profit!
